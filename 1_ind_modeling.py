@@ -21,15 +21,13 @@ df_all_data.isnull().sum()
 
 from sklearn.naive_bayes import GaussianNB
 clf = GaussianNB()
-clf.fit(df_all_data.loc[:,'age':'51301_var'], df_all_data.loc[:,'IsReadmitted'])
-yhat = pd.DataFrame(clf.predict(df_all_data.loc[:,'age':'51301_var']), columns=['predict'])
 
-
-y_train = pd.DataFrame(df_all_data.loc[:,'IsReadmitted'])
-
+clf.fit(df_all_data.loc[:,'87_mean':'insurance_Self Pay'], df_all_data.loc[:,'IsReadmitted'])
+yhat = pd.DataFrame(clf.predict(df_all_data.loc[:,'87_mean':'insurance_Self Pay']), columns=['predict'])
+y = pd.DataFrame(df_all_data.loc[:,'IsReadmitted'])
 match = 0.0
 for m in range(0, len(yhat)):
-    if yhat.iloc[m].values == y_train.iloc[m].values: match += 1
+    if yhat.iloc[m].values == y.iloc[m].values: match += 1
 
 match = match / len(yhat)
 print match
