@@ -15,7 +15,7 @@ seed=123
 
 
 df_all_data = pd.read_csv("../df_master_all.csv",sep=',',header=0)
-df_all_data = df_all_data.iloc[0:1000,:]
+df_all_data = df_all_data.iloc[:,:]
 df_data = df_all_data.loc[:,'87_mean':'IsReadmitted']
 xtrain = df_all_data.loc[:,'87_mean':'insurance_Self Pay']
 ytrain = df_data.IsReadmitted
