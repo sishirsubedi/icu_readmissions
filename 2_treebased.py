@@ -46,7 +46,7 @@ cart = DecisionTreeClassifier()
 num_trees = 100
 model = BaggingClassifier(base_estimator=cart, n_estimators=num_trees, random_state=seed)
 results = model_selection.cross_val_score(model, xtrain, ytrain, cv=kfold)
-print(results.mean())
+print results.mean()
 
 
 
