@@ -5,20 +5,13 @@ import numpy as np
 from sklearn import model_selection
 from sklearn.ensemble import BaggingClassifier
 from sklearn.tree import DecisionTreeClassifier
-
 from sklearn.ensemble import RandomForestClassifier
-
-
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.ensemble import VotingClassifier
-
-
 import matplotlib.pyplot as plt
 
 

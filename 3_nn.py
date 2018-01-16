@@ -4,6 +4,7 @@ from keras.layers import Dense
 import pandas as pd
 import numpy as np
 
+
 np.random.seed(7)
 
 # df_all_data = pd.read_csv("../df_master_all.csv",sep=',',header=0)
@@ -13,11 +14,7 @@ np.random.seed(7)
 # df_all_data2.head(2)
 # df_all_data2.to_csv("df_master_all_small.csv",index=False)
 
-df_all_data = pd.read_csv("df_master_all_small.csv",sep=',',header=0)
-df_all_data.shape
 
-X = df_all_data.iloc[:,0:14]
-Y = df_all_data.iloc[:,14]
 
 # create model
 model = Sequential()
@@ -42,3 +39,6 @@ predictions = model.predict(X)
 # round predictions
 rounded = [round(x[0]) for x in predictions]
 print(rounded)
+
+
+
