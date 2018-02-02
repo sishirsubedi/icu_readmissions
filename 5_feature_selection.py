@@ -5,6 +5,8 @@ from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from xgboost.sklearn import XGBClassifier
+import statsmodels.api as sm
+import numpy as np
 
 
 def correlation_filter(datamatrix):
@@ -75,20 +77,31 @@ def get_best_features(df_all_data):
 
     print ("feature ranking started....")
     df_ranked = get_feature_ranking(X_train,y_train)
-    ranked_list = list(df_ranked['features1'])
-    X_train_sorted = X_train[ranked_list]
+    df_ranked.columns = ['ranked_features', 'score']
+    df_ranked.to_csv("features_ranking.csv",index=False)
 
-    print ("getting best k features....")
-    accuracy = []
-    model = LogisticRegression()
-    for k in range(1,len(ranked_list)):
-        x_train_filt = X_train_sorted.iloc[:,0:k]
-        predicted = cross_val_predict(model, x_train_filt, y_train, cv=3)
-        accuracy.append(metrics.accuracy_score(y_train, predicted))
-    optimal_features_index = accuracy.index(max(accuracy)) + 1
-    optimal_features = df_ranked.features1[0:optimal_features_index]
-    optimal_features.to_csv("best_features.csv",index=False)
-    print ("program completed..check best_features.csv ....")
+    print ("program completed..check features_ranking.csv ....")
+
+
+    #ranked_list = list(df_ranked['features1'])
+
+    # X_train_sorted = X_train[ranked_list]
+    #
+    # print ("getting best k features....")
+    # accuracy = []
+    # model = LogisticRegression()
+    # for k in range(1,len(ranked_list)):
+    #     x_train_filt = X_train_sorted.iloc[:,0:k]
+    #     print x_train_filt.shape
+    #     model.fit(x_train_filt, y_train)
+    #     predicted = cross_val_predict(model, x_train_filt, y_train, cv=3)
+    #     accuracy.append(metrics.accuracy_score(y_train, predicted))
+    # print accuracy
+    # optimal_features_index = accuracy.index(max(accuracy)) + 1
+    # print optimal_features_index
+    # optimal_features = df_ranked.features1[0:optimal_features_index]
+    # optimal_features.to_csv("best_features.csv",index=False)
+    #print ("program completed..check best_features.csv ....")
 
 
 # df_all_data = pd.read_csv("df_master_all_small.csv")
